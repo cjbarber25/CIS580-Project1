@@ -32,12 +32,12 @@ namespace CIS580_Project1
             System.Random rand = new System.Random();
             foods = new FoodSprite[]
             {
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
             };
             foodLeft = foods.Length;
             slime = new SlimeSprite();

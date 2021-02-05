@@ -34,7 +34,7 @@ namespace CIS580_Project1
         /// <param name="content">The ContentManager to load with</param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("slime");
+            texture = content.Load<Texture2D>("slime_idle");
         }
 
         /// <summary>
