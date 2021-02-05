@@ -28,13 +28,18 @@ namespace CIS580_Project1
 
         public BoundingCircle Bounds => bounds;
 
+        //animation for the slime
+        private double animationTimer;
+        private int animationFrame = 0;
+        private const float ANIMATION_SPEED = 0.1f;
+
         /// <summary>
         /// Loads the slime texture using the ContentManager
         /// </summary>
         /// <param name="content">The ContentManager to load with</param>
         public void LoadContent(ContentManager content)
         {
-            texture = content.Load<Texture2D>("slime_idle");
+            texture = content.Load<Texture2D>("slime");
         }
 
         /// <summary>
@@ -74,7 +79,15 @@ namespace CIS580_Project1
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            spriteBatch.Draw(texture, position, null, Color.White, 0, new Vector2(32, 32), Size, spriteEffects, 0);
+            animationTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if(animationTimer > ANIMATION_SPEED)
+            {
+                animationFrame++;
+                if (animationFrame > 3) animationFrame = 0;
+                animationTimer -= ANIMATION_SPEED;
+            }
+            var source = new Rectangle(animationFrame * 32, 96, 32, 32);
+            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(32, 32), Size, spriteEffects, 0);
         }
     }
 }
