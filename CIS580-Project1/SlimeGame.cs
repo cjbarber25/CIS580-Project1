@@ -38,10 +38,6 @@ namespace CIS580_Project1
                 new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
                 new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
                 new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
             };
             foodLeft = foods.Length;
             slime = new SlimeSprite();
@@ -76,8 +72,8 @@ namespace CIS580_Project1
             {
                 if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds))
                 {
-                    //adjust slime size HERE
-                    
+                    slime.Size += .75f;
+                    slime.AdjustRadius();
                     food.Eaten = true;
                     foodLeft--;
                 }

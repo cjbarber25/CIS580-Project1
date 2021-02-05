@@ -22,7 +22,9 @@ namespace CIS580_Project1
 
         private bool flipped;
 
-        private BoundingCircle bounds = new BoundingCircle(new Vector2(200, 200), 16);
+        private BoundingCircle bounds = new BoundingCircle(new Vector2(200, 200), 20);
+
+        public float Size { get; set; } = 2.5f;
 
         public BoundingCircle Bounds => bounds;
 
@@ -56,7 +58,12 @@ namespace CIS580_Project1
                 position += new Vector2(1, 0) * 2;
                 flipped = false;
             }
-            bounds.Center = position - new Vector2(120,120);
+            bounds.Center = position - new Vector2(40,40) * Size/2.5f;
+        }
+
+        public void AdjustRadius()
+        {
+            bounds.Radius += Size;
         }
 
         /// <summary>
@@ -67,7 +74,7 @@ namespace CIS580_Project1
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            spriteBatch.Draw(texture, position, null, Color.White, 0, new Vector2(64, 64), 2.5f, spriteEffects, 0);
+            spriteBatch.Draw(texture, position, null, Color.White, 0, new Vector2(32, 32), Size, spriteEffects, 0);
         }
     }
 }
