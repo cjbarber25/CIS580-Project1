@@ -9,7 +9,7 @@ namespace CIS580_Project1
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        //private FoodSprite[] foods;
+        private FoodSprite[] foods;
         private SlimeSprite slime;
         private int foodLeft;
 
@@ -30,8 +30,20 @@ namespace CIS580_Project1
         {
             // TODO: Add your initialization logic here
             System.Random rand = new System.Random();
-            //food logic HERE
-            //foodLeft = foods.Length;
+            foods = new FoodSprite[]
+            {
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height)),
+            };
+            foodLeft = foods.Length;
             slime = new SlimeSprite();
             base.Initialize();
         }
@@ -44,7 +56,7 @@ namespace CIS580_Project1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //Load food HERE
+            foreach (var food in foods) food.LoadContent(Content);
             slime.LoadContent(Content);
         }
 
@@ -75,7 +87,7 @@ namespace CIS580_Project1
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            //Draw food logic HERE
+            foreach (var food in foods) food.Draw(gameTime, spriteBatch);
             slime.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
