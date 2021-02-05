@@ -22,9 +22,9 @@ namespace CIS580_Project1
 
         private bool flipped;
 
-        // private BoundingCircle bound = new BoundingCircle(new Vector2(200 - 8, 200 - 8), 8);
+        private BoundingCircle bounds = new BoundingCircle(new Vector2(200, 200), 16);
 
-        //private BoundingCircle Bounds => bounds;
+        public BoundingCircle Bounds => bounds;
 
         /// <summary>
         /// Loads the slime texture using the ContentManager
@@ -56,8 +56,7 @@ namespace CIS580_Project1
                 position += new Vector2(1, 0) * 2;
                 flipped = false;
             }
-            //bounds.X = position.X - 16;
-            //bounds.Y = position.Y - 16;
+            bounds.Center = position - new Vector2(120,120);
         }
 
         /// <summary>

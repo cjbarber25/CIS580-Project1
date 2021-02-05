@@ -18,9 +18,9 @@ namespace CIS580_Project1
 
         private Texture2D texture;
 
-        //private BoundingCircle bounds;
+        private BoundingCircle bounds;
 
-        //public BoundingCircle Bounds => bounds;
+        public BoundingCircle Bounds => bounds;
 
         public bool Eaten { get; set; } = false;
 
@@ -31,7 +31,7 @@ namespace CIS580_Project1
         public FoodSprite(Vector2 position)
         {
             this.position = position;
-            //this.bounds = new BoundingCircle(position + new Vector2(8, 8), 8);
+            this.bounds = new BoundingCircle(position + new Vector2(16,16), 8);
         }
 
         /// <summary>

@@ -72,7 +72,16 @@ namespace CIS580_Project1
             // TODO: Add your update logic here
             slime.Update(gameTime);
 
-            //Collision logic HERE
+            foreach (var food in foods)
+            {
+                if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds))
+                {
+                    //adjust slime size HERE
+                    
+                    food.Eaten = true;
+                    foodLeft--;
+                }
+            }
 
             base.Update(gameTime);
         }
