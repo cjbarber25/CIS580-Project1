@@ -1,0 +1,5 @@
+﻿Content/slime.png - created by Ivess for Itch.io downloadable assets, released under public domain
+	https://ivess.itch.io/slime-animations-pack
+
+Content/food.png - created by ghostpixxells for Itch.io downloadable assets, released under public domain
+	https://ghostpixxells.itch.io/pixelfood

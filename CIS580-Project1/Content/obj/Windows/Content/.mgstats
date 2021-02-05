@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/food.png","C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/bin/Windows/Content/food.xnb","TextureProcessor","Texture2DContent",809,4181,0.1908971
+"C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/slime.png","C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/bin/Windows/Content/slime.xnb","TextureProcessor","Texture2DContent",352,4181,0.0038541
