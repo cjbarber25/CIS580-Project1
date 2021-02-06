@@ -11,7 +11,8 @@ namespace CIS580_Project1
 
         private FoodSprite[] foods;
         private SlimeSprite slime;
-        private int foodLeft;
+        private int foodEaten = 0;
+        private SpriteFont spriteFont;
 
         /// <summary>
         /// A game where you play as a slime and eat to get bigger
@@ -39,7 +40,6 @@ namespace CIS580_Project1
                 new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
                 new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
             };
-            foodLeft = foods.Length;
             slime = new SlimeSprite();
             base.Initialize();
         }
@@ -54,6 +54,7 @@ namespace CIS580_Project1
             // TODO: use this.Content to load your game content here
             foreach (var food in foods) food.LoadContent(Content);
             slime.LoadContent(Content);
+            spriteFont = Content.Load<SpriteFont>("Impact");
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace CIS580_Project1
                     slime.Size += .75f;
                     slime.AdjustRadius();
                     food.Eaten = true;
-                    foodLeft--;
+                    foodEaten++;
                 }
             }
 
@@ -93,6 +94,27 @@ namespace CIS580_Project1
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             foreach (var food in foods) food.Draw(gameTime, spriteBatch);
+            switch(foodEaten)
+            {
+                case 1:
+                    spriteBatch.DrawString(spriteFont, "I'm so hungry...", new Vector2(2, 2), Color.Green);
+                    break;
+                case 2:
+                    spriteBatch.DrawString(spriteFont, "Om Nom Nom", new Vector2(2, 2), Color.Green);
+                    break;
+                case 3:
+                    spriteBatch.DrawString(spriteFont, "More! MORE!", new Vector2(2, 2), Color.Green);
+                    break;
+                case 4:
+                    spriteBatch.DrawString(spriteFont, "PIZZA!!!", new Vector2(2, 2), Color.Green);
+                    break;
+                case 5:
+                    spriteBatch.DrawString(spriteFont, "I can see my house from here.", new Vector2(2, 2), Color.Green);
+                    break;
+                case 6:
+                    spriteBatch.DrawString(spriteFont, "All Full!", new Vector2(2, 2), Color.Green);
+                    break;
+            }
             slime.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
