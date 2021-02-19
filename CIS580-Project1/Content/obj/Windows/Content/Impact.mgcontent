@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/Impact.spritefont</SourceFile>
-  <SourceTime>2021-02-05T22:58:31.2099191-06:00</SourceTime>
-  <DestFile>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/bin/Windows/Content/Impact.xnb</DestFile>
-  <DestTime>2021-02-05T22:58:33.2548906-06:00</DestTime>
+  <SourceFile>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/Impact.spritefont</SourceFile>
+  <SourceTime>2021-02-19T14:41:37.6770196-06:00</SourceTime>
+  <DestFile>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/bin/Windows/Content/Impact.xnb</DestFile>
+  <DestTime>2021-02-19T14:41:43.8225928-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -7327,11 +7327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\coleb\\source\\repos\\CIS580-Project1\\CIS580-Project1\\CIS580_Project1.csproj",
+      "projectUniqueName": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project1.csproj",
       "projectName": "CIS580_Project1",
-      "projectPath": "C:\\Users\\coleb\\source\\repos\\CIS580-Project1\\CIS580-Project1\\CIS580_Project1.csproj",
+      "projectPath": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project1.csproj",
       "packagesPath": "C:\\Users\\coleb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\coleb\\source\\repos\\CIS580-Project1\\CIS580-Project1\\obj\\",
+      "outputPath": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

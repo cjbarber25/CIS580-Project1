@@ -4,10 +4,10 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/food.png</File>
-    <File>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/Impact.spritefont</File>
-    <File>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/slime.png</File>
-    <File>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/slime_idle.png</File>
+    <File>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/food.png</File>
+    <File>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/Impact.spritefont</File>
+    <File>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/slime.png</File>
+    <File>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/slime_idle.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

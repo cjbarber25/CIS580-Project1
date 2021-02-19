@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/slime.png</SourceFile>
-  <SourceTime>2021-01-27T09:12:02.7947626-06:00</SourceTime>
-  <DestFile>C:/Users/coleb/source/repos/CIS580-Project1/CIS580-Project1/Content/bin/Windows/Content/slime.xnb</DestFile>
-  <DestTime>2021-02-05T17:08:05.9574269-06:00</DestTime>
+  <SourceFile>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/slime.png</SourceFile>
+  <SourceTime>2021-02-19T14:41:37.6930335-06:00</SourceTime>
+  <DestFile>C:/Users/coleb/Source/Repos/VincentTheSlime/CIS580-Project1/Content/bin/Windows/Content/slime.xnb</DestFile>
+  <DestTime>2021-02-19T14:41:43.8316033-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
