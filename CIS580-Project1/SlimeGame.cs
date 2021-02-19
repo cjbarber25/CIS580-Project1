@@ -33,12 +33,12 @@ namespace CIS580_Project1
             System.Random rand = new System.Random();
             foods = new FoodSprite[]
             {
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 8, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 8)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
             };
             slime = new SlimeSprite();
             base.Initialize();
@@ -79,7 +79,7 @@ namespace CIS580_Project1
                     foodEaten++;
                 }
             }
-
+            if (foodEaten > 5) slime.Full = true;
             base.Update(gameTime);
         }
 
@@ -96,6 +96,9 @@ namespace CIS580_Project1
             foreach (var food in foods) food.Draw(gameTime, spriteBatch);
             switch(foodEaten)
             {
+                case 0:
+                    spriteBatch.DrawString(spriteFont, "Eat the pizzas quickly before you shrink!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);
+                    break;
                 case 1:
                     spriteBatch.DrawString(spriteFont, "I'm so hungry...", new Vector2(2, 2), Color.Green);
                     break;
@@ -112,7 +115,7 @@ namespace CIS580_Project1
                     spriteBatch.DrawString(spriteFont, "I can see my house from here.", new Vector2(2, 2), Color.Green);
                     break;
                 case 6:
-                    spriteBatch.DrawString(spriteFont, "All Full!", new Vector2(2, 2), Color.Green);
+                    spriteBatch.DrawString(spriteFont, "All Full! (Game Completed)", new Vector2(2, 2), Color.Green);
                     break;
             }
             slime.Draw(gameTime, spriteBatch);

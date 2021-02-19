@@ -24,6 +24,7 @@ namespace CIS580_Project1
 
         private BoundingCircle bounds = new BoundingCircle(new Vector2(200, 200), 20);
 
+        public bool Full = false;
         public float Size { get; set; } = 2.5f;
 
         public BoundingCircle Bounds => bounds;
@@ -49,7 +50,10 @@ namespace CIS580_Project1
         public void Update(GameTime gameTime)
         {
             keyboardState = Keyboard.GetState();
-
+            if(Full)
+            {
+                return;
+            }
             //keyboard movement
             if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) position += new Vector2(0, -1) * 2;
             if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 1) * 2;
