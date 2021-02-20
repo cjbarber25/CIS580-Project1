@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 namespace CIS580_Project1
 {
     public class SlimeGame : Game
@@ -15,6 +16,7 @@ namespace CIS580_Project1
 
         private double gameTimer;
         private Song backgroundMusic;
+        private SoundEffect eatSound;
 
         /// <summary>
         /// A game where you play as a slime and eat to get bigger
@@ -60,6 +62,8 @@ namespace CIS580_Project1
             backgroundMusic = Content.Load<Song>("newer-wave-by-kevin-macleod-from-filmmusic-io");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = .5f;
+            eatSound = Content.Load<SoundEffect>("Eating");
         }
 
         /// <summary>
@@ -78,6 +82,7 @@ namespace CIS580_Project1
             {
                 if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds) && !slime.Full)
                 {
+                    eatSound.Play();
                     slime.Size += .75f;
                     slime.AdjustRadius();
                     food.Eaten = true;
@@ -85,6 +90,7 @@ namespace CIS580_Project1
                 }
             }
             if (slime.foodEaten > 5) slime.Full = true;
+            if (slime.Full) MediaPlayer.Stop();
             base.Update(gameTime);
         }
 
