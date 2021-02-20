@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using CIS580_Project1.Collisions;
-
+using Microsoft.Xna.Framework.Audio;
 namespace CIS580_Project1
 {
     /// <summary>
@@ -29,6 +29,22 @@ namespace CIS580_Project1
 
         public int foodEaten = 0;
 
+        private bool spaceHeld = false;
+
+        private double spaceHoldTimer = 0;
+
+        private directions direction;
+        private enum directions
+        {
+            Up,
+            Down,
+            Left,
+            Right
+        }
+        private Vector2 jumpVelocity = new Vector2(0, 0);
+        private const int JUMP_MAX = 150;
+        private const float JUMP_TIME_CHARGE = .5f;
+        private SoundEffect jumpSound;
         //Shrinking timer variables
         private const double SHRINK_TIME = 2;
         public double shrinkTimer;
@@ -46,6 +62,7 @@ namespace CIS580_Project1
         public void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("slime");
+            jumpSound = content.Load<SoundEffect>("Jump4");
         }
 
         /// <summary>
@@ -54,23 +71,91 @@ namespace CIS580_Project1
         /// <param name="gameTime">GameTime</param>
         public void Update(GameTime gameTime)
         {
+            spaceHeld = false;
             keyboardState = Keyboard.GetState();
-            if(Full)
+            float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Full)
             {
                 return;
             }
             //keyboard movement
-            if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) position += new Vector2(0, -1) * 2;
-            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) position += new Vector2(0, 1) * 2;
-            if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
+            if (keyboardState.IsKeyDown(Keys.Space))
             {
+                spaceHeld = true;
+                spaceHoldTimer += gameTime.ElapsedGameTime.TotalSeconds;
+                if (spaceHoldTimer < JUMP_TIME_CHARGE)
+                {
+                    switch (direction)
+                    {
+                        case directions.Right:
+                            jumpVelocity = new Vector2(20, 0);
+                            break;
+                        case directions.Left:
+                            jumpVelocity = new Vector2(-20, 0);
+                            break;
+                        case directions.Up:
+                            jumpVelocity = new Vector2(0, -20);
+                            break;
+                        case directions.Down:
+                            jumpVelocity = new Vector2(0, 20);
+                            break;
+                    }
+                }
+                if (spaceHoldTimer >= JUMP_TIME_CHARGE)
+                {
+                    switch (direction)
+                    {
+                        case directions.Right:
+                            jumpVelocity += new Vector2(40, 0);
+                            break;
+                        case directions.Left:
+                            jumpVelocity += new Vector2(-40, 0);
+                            break;
+                        case directions.Up:
+                            jumpVelocity += new Vector2(0, -40);
+                            break;
+                        case directions.Down:
+                            jumpVelocity += new Vector2(0, 40);
+                            break;
+                    }
+                }
+            }
+            if ((keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W)) && !spaceHeld)
+            {
+                jumpVelocity = new Vector2(0, 0);
+                direction = directions.Up;
+                position += new Vector2(0, -1) * 2;
+            }
+            if ((keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S)) && !spaceHeld)
+            {
+                jumpVelocity = new Vector2(0, 0);
+                direction = directions.Down;
+                position += new Vector2(0, 1) * 2;
+            }
+            if ((keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A)) && !spaceHeld)
+            {
+                jumpVelocity = new Vector2(0, 0);
+                direction = directions.Left;
                 position += new Vector2(-1, 0) * 2;
                 flipped = true;
             }
-            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
+            if ((keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D)) && !spaceHeld)
             {
+                jumpVelocity = new Vector2(0, 0);
+                direction = directions.Right;
                 position += new Vector2(1, 0) * 2;
                 flipped = false;
+            }
+            if(!spaceHeld)
+            {
+                if (jumpVelocity.X > JUMP_MAX) jumpVelocity.X = JUMP_MAX;
+                if (jumpVelocity.X < -JUMP_MAX) jumpVelocity.X = -JUMP_MAX;
+                if (jumpVelocity.Y > JUMP_MAX) jumpVelocity.Y = JUMP_MAX;
+                if (jumpVelocity.Y < -JUMP_MAX) jumpVelocity.Y = -JUMP_MAX;
+                position += jumpVelocity;
+                if(jumpVelocity != new Vector2(0,0)) jumpSound.Play();
+                spaceHoldTimer = 0;
+                jumpVelocity = new Vector2(0, 0);
             }
             bounds.Center = position - new Vector2(40,40) * Size/2.5f;
         }

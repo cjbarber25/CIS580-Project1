@@ -37,12 +37,12 @@ namespace CIS580_Project1
             System.Random rand = new System.Random();
             foods = new FoodSprite[]
             {
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
-                new FoodSprite(new Vector2((float)rand.NextDouble() * GraphicsDevice.Viewport.Width - 16, (float)rand.NextDouble() * GraphicsDevice.Viewport.Height - 16)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
+                new FoodSprite(new Vector2(GraphicsDevice.Viewport.Width-20,GraphicsDevice.Viewport.Height-20)),
             };
             slime = new SlimeSprite();
             base.Initialize();
@@ -92,6 +92,10 @@ namespace CIS580_Project1
             }
             if (slime.foodEaten > 5) slime.Full = true;
             if (slime.Full) MediaPlayer.Stop();
+            foreach(var food in foods)
+            {
+                food.Update(gameTime);
+            }
             base.Update(gameTime);
         }
 
@@ -106,7 +110,8 @@ namespace CIS580_Project1
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             foreach (var food in foods) food.Draw(gameTime, spriteBatch);
-            switch(slime.foodEaten)
+            slime.Draw(gameTime, spriteBatch);
+            switch (slime.foodEaten)
             {
                 case 0:
                     spriteBatch.DrawString(spriteFont, "I want pizza!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);
@@ -135,7 +140,6 @@ namespace CIS580_Project1
                  gameTimer = gameTime.TotalGameTime.TotalSeconds;
             }
             spriteBatch.DrawString(spriteFont, $"{gameTimer:f}", new Vector2(GraphicsDevice.Viewport.Width - 200 ,2), Color.White);
-            slime.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
