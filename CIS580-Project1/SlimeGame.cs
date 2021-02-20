@@ -11,7 +11,6 @@ namespace CIS580_Project1
 
         private FoodSprite[] foods;
         private SlimeSprite slime;
-        private int foodEaten = 0;
         private SpriteFont spriteFont;
 
         /// <summary>
@@ -76,10 +75,10 @@ namespace CIS580_Project1
                     slime.Size += .75f;
                     slime.AdjustRadius();
                     food.Eaten = true;
-                    foodEaten++;
+                    slime.foodEaten++;
                 }
             }
-            if (foodEaten > 5) slime.Full = true;
+            if (slime.foodEaten > 5) slime.Full = true;
             base.Update(gameTime);
         }
 
@@ -94,7 +93,7 @@ namespace CIS580_Project1
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             foreach (var food in foods) food.Draw(gameTime, spriteBatch);
-            switch(foodEaten)
+            switch(slime.foodEaten)
             {
                 case 0:
                     spriteBatch.DrawString(spriteFont, "Eat the pizzas quickly before you shrink!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);

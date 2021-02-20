@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj": {}
+    "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj": {
+    "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
+        "projectUniqueName": "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
         "projectName": "CIS580_Project",
-        "projectPath": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
+        "projectPath": "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
         "packagesPath": "C:\\Users\\coleb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\obj\\",
+        "outputPath": "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

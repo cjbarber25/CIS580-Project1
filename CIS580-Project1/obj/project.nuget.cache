@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ms8euy3sVeiu1J1Dem8e8r0a1ddROSsgzJNyXQbMs+QNgis/6G2ScBzY6afJPXR1muzWBpjzpp6T6mJYdBN0JQ==",
+  "dgSpecHash": "hrnCzfSyBWJFYyQwiYkEpyWXsCe+G0vBpQgFrNvHAIyG5V82olPpuBfkRuNdv+wmLnwWlIzvz7/SX7Y6Ib7Xfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\coleb\\Source\\Repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
+  "projectFilePath": "C:\\Users\\coleb\\source\\repos\\VincentTheSlime\\CIS580-Project1\\CIS580_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\coleb\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",

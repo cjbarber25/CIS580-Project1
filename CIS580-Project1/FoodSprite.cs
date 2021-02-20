@@ -68,6 +68,7 @@ namespace CIS580_Project1
                     System.Random rand = new System.Random();
                     this.Eaten = false;
                     this.position += new Vector2((float)rand.NextDouble(), (float)rand.NextDouble());
+                    respawnTimer -= RESPAWN_TIME;
                 }
                 return;
             }
