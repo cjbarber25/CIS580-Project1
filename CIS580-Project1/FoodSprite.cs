@@ -25,7 +25,7 @@ namespace CIS580_Project1
         public bool Eaten { get; set; } = false;
 
         private double respawnTimer;
-        private const float RESPAWN_TIME = 8;
+        private const float RESPAWN_TIME = 6;
         /// <summary>
         /// Creates new food sprites
         /// </summary>
@@ -67,7 +67,8 @@ namespace CIS580_Project1
                 {
                     System.Random rand = new System.Random();
                     this.Eaten = false;
-                    this.position += new Vector2((float)rand.NextDouble(), (float)rand.NextDouble());
+                    this.position = new Vector2((float)rand.NextDouble()*position.X, (float)rand.NextDouble()*position.Y);
+                    this.bounds.Center = position + new Vector2(16, 16);
                     respawnTimer -= RESPAWN_TIME;
                 }
                 return;

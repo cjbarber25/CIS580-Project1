@@ -30,7 +30,7 @@ namespace CIS580_Project1
         public int foodEaten = 0;
 
         //Shrinking timer variables
-        private const double SHRINK_TIME = 4;
+        private const double SHRINK_TIME = 3;
         private double shrinkTimer;
         public BoundingCircle Bounds => bounds;
 
@@ -89,22 +89,23 @@ namespace CIS580_Project1
         {
             SpriteEffects spriteEffects = (flipped) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             animationTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            if(animationTimer > ANIMATION_SPEED)
+            if(animationTimer > ANIMATION_SPEED && !Full)
             {
                 animationFrame++;
                 if (animationFrame > 3) animationFrame = 0;
                 animationTimer -= ANIMATION_SPEED;
             }
-            shrinkTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if(Size > 2.5f) shrinkTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if(shrinkTimer > SHRINK_TIME && Size > 2.5f && foodEaten < 6)
             {
                 Size -= .75f;
                 bounds.Radius -= Size;
+                bounds.Center = position ;
                 foodEaten--;
-                shrinkTimer -= SHRINK_TIME;
+                shrinkTimer = 0;
             }
             var source = new Rectangle(animationFrame * 32, 96, 32, 32);
-            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(32, 32), Size, spriteEffects, 0);
+            spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(32, 26), Size, spriteEffects, 0);
         }
     }
 }

@@ -13,6 +13,8 @@ namespace CIS580_Project1
         private SlimeSprite slime;
         private SpriteFont spriteFont;
 
+        private double gameTimer;
+
         /// <summary>
         /// A game where you play as a slime and eat to get bigger
         /// </summary>
@@ -70,7 +72,7 @@ namespace CIS580_Project1
 
             foreach (var food in foods)
             {
-                if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds))
+                if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds) && !slime.Full)
                 {
                     slime.Size += .75f;
                     slime.AdjustRadius();
@@ -96,7 +98,7 @@ namespace CIS580_Project1
             switch(slime.foodEaten)
             {
                 case 0:
-                    spriteBatch.DrawString(spriteFont, "Eat the pizzas quickly before you shrink!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);
+                    spriteBatch.DrawString(spriteFont, "I want pizza!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);
                     break;
                 case 1:
                     spriteBatch.DrawString(spriteFont, "I'm so hungry...", new Vector2(2, 2), Color.Green);
@@ -114,9 +116,14 @@ namespace CIS580_Project1
                     spriteBatch.DrawString(spriteFont, "I can see my house from here.", new Vector2(2, 2), Color.Green);
                     break;
                 case 6:
-                    spriteBatch.DrawString(spriteFont, "All Full! (Game Completed)", new Vector2(2, 2), Color.Green);
+                    spriteBatch.DrawString(spriteFont, "All Full! Time for a nap.", new Vector2(2, 2), Color.Green);
                     break;
             }
+            if (slime.foodEaten < 6)
+            {
+                 gameTimer = gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(spriteFont, $"{gameTimer:f}", new Vector2(GraphicsDevice.Viewport.Width - 200 ,2), Color.White);
             slime.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
