@@ -82,6 +82,7 @@ namespace CIS580_Project1
             {
                 if(!food.Eaten && food.Bounds.CollidesWith(slime.Bounds) && !slime.Full)
                 {
+                    slime.shrinkTimer = 0;
                     eatSound.Play();
                     slime.Size += .75f;
                     slime.AdjustRadius();

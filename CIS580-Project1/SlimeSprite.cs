@@ -30,8 +30,8 @@ namespace CIS580_Project1
         public int foodEaten = 0;
 
         //Shrinking timer variables
-        private const double SHRINK_TIME = 3;
-        private double shrinkTimer;
+        private const double SHRINK_TIME = 2;
+        public double shrinkTimer;
         public BoundingCircle Bounds => bounds;
 
         //animation for the slime
@@ -105,6 +105,7 @@ namespace CIS580_Project1
                 shrinkTimer = 0;
             }
             var source = new Rectangle(animationFrame * 32, 96, 32, 32);
+            if (Full) source = new Rectangle(0, 96, 32, 32);
             spriteBatch.Draw(texture, position, source, Color.White, 0, new Vector2(32, 26), Size, spriteEffects, 0);
         }
     }
