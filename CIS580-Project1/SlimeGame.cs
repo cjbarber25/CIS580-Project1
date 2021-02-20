@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Microsoft.Xna.Framework.Media;
 namespace CIS580_Project1
 {
     public class SlimeGame : Game
@@ -14,6 +14,7 @@ namespace CIS580_Project1
         private SpriteFont spriteFont;
 
         private double gameTimer;
+        private Song backgroundMusic;
 
         /// <summary>
         /// A game where you play as a slime and eat to get bigger
@@ -56,6 +57,9 @@ namespace CIS580_Project1
             foreach (var food in foods) food.LoadContent(Content);
             slime.LoadContent(Content);
             spriteFont = Content.Load<SpriteFont>("Impact");
+            backgroundMusic = Content.Load<Song>("newer-wave-by-kevin-macleod-from-filmmusic-io");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(backgroundMusic);
         }
 
         /// <summary>

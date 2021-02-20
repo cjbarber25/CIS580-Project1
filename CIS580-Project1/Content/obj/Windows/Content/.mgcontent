@@ -6,10 +6,12 @@
   <SourceFiles>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/food.png</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/Impact.spritefont</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/newer-wave-by-kevin-macleod-from-filmmusic-io.mp3</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/slime.png</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/slime_idle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

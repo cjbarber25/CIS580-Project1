@@ -1,5 +1,9 @@
-﻿Content/slime.png & Content/slime_idle.png(not used in final product) - created by Ivess for Itch.io downloadable assets, released under public domain
-	https://ivess.itch.io/slime-animations-pack
+﻿Content/slime.png & Content/slime_idle.png(not used in final product) - created by Ivess for Itch.io downloadable assets, released under Creative Commons
 
-Content/food.png - created by ghostpixxells for Itch.io downloadable assets, released under public domain
+Content/food.png - created by ghostpixxells for Itch.io downloadable assets, released under Creative Commons
 	https://ghostpixxells.itch.io/pixelfood
+
+Content/newer-wave-by-kevin-macleod-from-filmmusic-io.mp3 released under Creative Commons
+	Newer Wave by Kevin MacLeod
+	Link: https://filmmusic.io/song/7016-newer-wave
+	License: https://filmmusic.io/standard-license

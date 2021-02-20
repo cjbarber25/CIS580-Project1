@@ -32,6 +32,12 @@
 /processorParam:TextureFormat=Compressed
 /build:Impact.spritefont
 
+#begin newer-wave-by-kevin-macleod-from-filmmusic-io.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:newer-wave-by-kevin-macleod-from-filmmusic-io.mp3
+
 #begin slime.png
 /importer:TextureImporter
 /processor:TextureProcessor
