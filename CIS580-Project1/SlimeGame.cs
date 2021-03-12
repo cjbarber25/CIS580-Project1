@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
-namespace CIS580_Project1
+using CIS580_Project.Screens;
+using CIS580_Project.StateManagement;
+
+namespace CIS580_Project
 {
     public class SlimeGame : Game
     {

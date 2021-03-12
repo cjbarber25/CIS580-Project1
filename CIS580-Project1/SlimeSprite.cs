@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using CIS580_Project1.Collisions;
+using CIS580_Project.Collisions;
 using Microsoft.Xna.Framework.Audio;
-namespace CIS580_Project1
+namespace CIS580_Project
 {
     /// <summary>
     /// Class representing the slime

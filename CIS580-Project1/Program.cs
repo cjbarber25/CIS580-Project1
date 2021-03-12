@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CIS580_Project1
+namespace CIS580_Project
 {
     public static class Program
     {

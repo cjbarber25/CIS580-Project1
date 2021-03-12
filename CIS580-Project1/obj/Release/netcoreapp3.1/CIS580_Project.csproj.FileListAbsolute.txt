@@ -42,3 +42,4 @@ C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\obj\Release\netcorea
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\obj\Release\netcoreapp3.1\CIS580_Project.dll
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\obj\Release\netcoreapp3.1\CIS580_Project.pdb
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\obj\Release\netcoreapp3.1\CIS580_Project.genruntimeconfig.cache
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\obj\Release\netcoreapp3.1\CIS580_Project.csprojAssemblyReference.cache

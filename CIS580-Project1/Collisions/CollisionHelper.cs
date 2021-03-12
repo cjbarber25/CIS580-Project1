@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CIS580_Project1.Collisions
+namespace CIS580_Project.Collisions
 {
     /// <summary>
     /// Helps check and handle collisions
