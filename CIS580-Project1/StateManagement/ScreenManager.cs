@@ -61,7 +61,6 @@ namespace CIS580_Project.StateManagement
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             Font = _content.Load<SpriteFont>("menufont");
             BlankTexture = _content.Load<Texture2D>("blank");
-
             // Tell each of the screens to load thier content 
             foreach (var screen in _screens)
             {

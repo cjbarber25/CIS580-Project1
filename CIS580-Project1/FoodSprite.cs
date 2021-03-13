@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using CIS580_Project.Collisions;
-
+using CIS580_Project.StateManagement;
 namespace CIS580_Project
 {
     /// <summary>
@@ -18,9 +18,10 @@ namespace CIS580_Project
 
         private Texture2D texture;
 
-        private BoundingCircle bounds;
+        public BoundingCircle bounds;
 
-        private Vector2 viewPort;
+        public Vector2 Velocity;
+        public Vector2 Acceleration;
 
         public BoundingCircle Bounds => bounds;
 
@@ -28,18 +29,17 @@ namespace CIS580_Project
 
         private double respawnTimer;
         private const float RESPAWN_TIME = 6;
-        private Vector2 velocity;
         /// <summary>
         /// Creates new food sprites
         /// </summary>
         /// <param name="position">Position of the sprite</param>
-        public FoodSprite(Vector2 viewport)
+        public FoodSprite(Vector2 position)
         {
-            viewPort = viewport;
             System.Random rand = new System.Random();
-            this.position = new Vector2(viewport.X*(float)rand.NextDouble(), viewport.Y * (float)rand.NextDouble());
+            this.position = position - new Vector2(20,20);
             this.bounds = new BoundingCircle(position + new Vector2(16,16), 8);
-            this.velocity = new Vector2(10 * (float)rand.NextDouble(), 10 * (float)rand.NextDouble());
+            this.Velocity = new Vector2(100,100);
+            this.Acceleration = new Vector2(20, 20);
         }
 
         /// <summary>
@@ -62,14 +62,9 @@ namespace CIS580_Project
         public void Update(GameTime gameTime)
         {
             float t = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Vector2 acceleration = new Vector2(1, 1);
-            velocity += acceleration * t;
-            position += velocity;
-            bounds.Center = position + new Vector2(16, 16);
-            if (bounds.Center.X > viewPort.X) velocity *= new Vector2(-1, 0);
-            if (bounds.Center.X < 0) velocity *= new Vector2(-1, 0);
-            if (bounds.Center.Y < viewPort.Y) velocity *= new Vector2(0, -1);
-            if (bounds.Center.Y > 0) velocity *= new Vector2(0, -1);
+            Velocity += Acceleration * t;
+            position += Velocity * t;
+            this.bounds = new BoundingCircle(position + new Vector2(16, 16),16);
         }
 
         /// <summary>
@@ -86,13 +81,13 @@ namespace CIS580_Project
                 {
                     System.Random rand = new System.Random();
                     this.Eaten = false;
-                    this.position = new Vector2(viewPort.X * (float)rand.NextDouble(), viewPort.Y * (float)rand.NextDouble());
+                    this.position = new Vector2((float)rand.NextDouble() * position.X, (float)rand.NextDouble() * position.Y);
                     this.bounds.Center = position + new Vector2(16, 16);
                     respawnTimer -= RESPAWN_TIME;
                 }
                 return;
             }
-
+            
             spriteBatch.Draw(texture, position, Color.White);
         }
     }

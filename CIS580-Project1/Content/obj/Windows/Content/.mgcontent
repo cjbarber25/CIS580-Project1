@@ -4,15 +4,27 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/background.png</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/blank.png</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/Eating.wav</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/food.png</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/gamefont.spritefont</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/gradient.png</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/Impact.spritefont</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/Jump4.wav</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/menufont.spritefont</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/newer-wave-by-kevin-macleod-from-filmmusic-io.mp3</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/slime.png</File>
     <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/slime_idle.png</File>
+    <File>C:/Users/coleb/source/repos/VincentTheSlime/CIS580-Project1/Content/splash.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

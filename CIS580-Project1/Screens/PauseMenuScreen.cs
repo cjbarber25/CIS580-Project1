@@ -10,12 +10,28 @@ namespace CIS580_Project.Screens
         {
             var resumeGameMenuEntry = new MenuEntry("Resume Game");
             var quitGameMenuEntry = new MenuEntry("Quit Game");
+            var optionsMenuEntry = new MenuEntry("Options");
+            var restartGameMenuEntry = new MenuEntry("Restart Game");
 
             resumeGameMenuEntry.Selected += OnCancel;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
+            optionsMenuEntry.Selected += OptionsMenuEntry_Selected;
+            restartGameMenuEntry.Selected += RestartGameMenuEntrySelected;
 
             MenuEntries.Add(resumeGameMenuEntry);
+            MenuEntries.Add(optionsMenuEntry);
+            MenuEntries.Add(restartGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
+        }
+
+        private void OptionsMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            ScreenManager.AddScreen(new OptionsMenuScreen(), e.PlayerIndex);
+        }
+
+        private void RestartGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new GameplayScreen());
         }
 
         private void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)

@@ -43,3 +43,9 @@ C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\newer-wave-by-kevin-macleod-from-filmmusic-io.xnb
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\Eating.xnb
 C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\Jump4.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\background.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\blank.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\gamefont.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\gradient.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\menufont.xnb
+C:\Users\coleb\source\repos\VincentTheSlime\CIS580-Project1\bin\Debug\netcoreapp3.1\Content\splash.xnb

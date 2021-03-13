@@ -5,25 +5,27 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CIS580_Project.StateManagement;
-
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 namespace CIS580_Project.Screens
 {
-    // This screen implements the actual game logic. It is just a
-    // placeholder to get the idea across: you'll probably want to
-    // put some more interesting gameplay in here!
     public class GameplayScreen : GameScreen
     {
         private ContentManager _content;
-        private SpriteFont _gameFont;
+        private SpriteBatch _spriteBatch;
 
-        private Vector2 _playerPosition = new Vector2(100, 100);
-        private Vector2 _enemyPosition = new Vector2(100, 100);
+        private FoodSprite[] foods;
+        private SlimeSprite slime;
+        private SpriteFont spriteFont;
 
-        private readonly Random _random = new Random();
+        private double gameTimer = 0;
+        private Song backgroundMusic;
+        private SoundEffect eatSound;
 
         private float _pauseAlpha;
         private readonly InputAction _pauseAction;
 
+        private bool _timerGoing = true;
         public GameplayScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
@@ -39,18 +41,30 @@ namespace CIS580_Project.Screens
         {
             if (_content == null)
                 _content = new ContentManager(ScreenManager.Game.Services, "Content");
+            _spriteBatch = new SpriteBatch(ScreenManager.GraphicsDevice);
+            _timerGoing = true;
+            slime = new SlimeSprite();
 
-            _gameFont = _content.Load<SpriteFont>("gamefont");
+            System.Random rand = new System.Random();
+            foods = new FoodSprite[]
+            {
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+                new FoodSprite(new Vector2((float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Width,(float)rand.NextDouble() * ScreenManager.GraphicsDevice.Viewport.Height)),
+            };
 
-            // A real game would probably have more content than this sample, so
-            // it would take longer to load. We simulate that by delaying for a
-            // while, giving you a chance to admire the beautiful loading screen.
-            Thread.Sleep(1000);
-
-            // once the load has finished, we use ResetElapsedTime to tell the game's
-            // timing mechanism that we have just finished a very long frame, and that
-            // it should not try to catch up.
-            ScreenManager.Game.ResetElapsedTime();
+            // TODO: use this.Content to load your game content here
+            foreach (var food in foods) food.LoadContent(_content);
+            slime.LoadContent(_content);
+            spriteFont = _content.Load<SpriteFont>("Impact");
+            backgroundMusic = _content.Load<Song>("newer-wave-by-kevin-macleod-from-filmmusic-io");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = .5f;
+            eatSound = _content.Load<SoundEffect>("Eating");
         }
 
 
@@ -69,7 +83,6 @@ namespace CIS580_Project.Screens
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
-
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
                 _pauseAlpha = Math.Min(_pauseAlpha + 1f / 32, 1);
@@ -78,21 +91,51 @@ namespace CIS580_Project.Screens
 
             if (IsActive)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
+                slime.Update(gameTime);
 
-                _enemyPosition.X += (float)(_random.NextDouble() - 0.5) * randomization;
-                _enemyPosition.Y += (float)(_random.NextDouble() - 0.5) * randomization;
-
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                var targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - _gameFont.MeasureString("Insert Gameplay Here").X / 2,
-                    200);
-
-                _enemyPosition = Vector2.Lerp(_enemyPosition, targetPosition, 0.05f);
-
-                // This game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                foreach (var food in foods)
+                {
+                    if (!food.Eaten && food.Bounds.CollidesWith(slime.Bounds) && !slime.Full)
+                    {
+                        slime.shrinkTimer = 0;
+                        eatSound.Play();
+                        slime.Size += .75f;
+                        slime.AdjustRadius();
+                        food.Eaten = true;
+                        slime.foodEaten++;
+                    }
+                }
+                if (slime.foodEaten > 5) slime.Full = true;
+                if (slime.Full)
+                {
+                    gameTimer = 0;
+                    MediaPlayer.Stop();
+                    LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());
+                }
+                foreach (var food in foods)
+                {
+                    food.Update(gameTime);
+                    if (food.bounds.Center.X >= ScreenManager.GraphicsDevice.Viewport.Width)
+                    {
+                        food.Velocity.X = -100;
+                        food.Acceleration.X = -20;
+                    }
+                    if (food.bounds.Center.X <= 0)
+                    {
+                        food.Velocity.X = 100;
+                        food.Acceleration.X = 20;
+                    }
+                    if (food.bounds.Center.Y >= ScreenManager.GraphicsDevice.Viewport.Height)
+                    {
+                        food.Velocity.Y = -100;
+                        food.Acceleration.Y = -20;
+                    }
+                    if (food.bounds.Center.Y <= 0)
+                    {
+                        food.Velocity.Y = 100;
+                        food.Acceleration.Y = 20;
+                    }
+                }
             }
         }
 
@@ -117,6 +160,7 @@ namespace CIS580_Project.Screens
             PlayerIndex player;
             if (_pauseAction.Occurred(input, ControllingPlayer, out player) || gamePadDisconnected)
             {
+                _timerGoing = false;
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
             }
             else
@@ -143,34 +187,56 @@ namespace CIS580_Project.Screens
 
                 if (movement.Length() > 1)
                     movement.Normalize();
-
-                _playerPosition += movement * 8f;
             }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            // This game has a blue background. Why? Because!
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target, Color.CornflowerBlue, 0, 0);
 
-            // Our player and enemy are both actually just text strings.
+            ScreenManager.GraphicsDevice.Clear(Color.LightSlateGray);
+            // TODO: Add your drawing code here
             var spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
-
-            spriteBatch.DrawString(_gameFont, "// TODO", _playerPosition, Color.Green);
-            spriteBatch.DrawString(_gameFont, "Insert Gameplay Here",
-                                   _enemyPosition, Color.DarkRed);
-
+            foreach (var food in foods) food.Draw(gameTime, spriteBatch);
+            //exit?
             spriteBatch.End();
 
-            // If the game is transitioning on or off, fade it out to black.
-            if (TransitionPosition > 0 || _pauseAlpha > 0)
-            {
-                float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, _pauseAlpha / 2);
+            spriteBatch.Begin();
+            slime.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
 
-                ScreenManager.FadeBackBufferToBlack(alpha);
+            _spriteBatch.Begin();
+            switch (slime.foodEaten)
+            {
+                case 0:
+                    _spriteBatch.DrawString(spriteFont, "I want pizza!\nPress Spacebar with a direction to jump forward.", new Vector2(2, 2), Color.Green);
+                    break;
+                case 1:
+                    _spriteBatch.DrawString(spriteFont, "I'm so hungry...", new Vector2(2, 2), Color.Green);
+                    break;
+                case 2:
+                    _spriteBatch.DrawString(spriteFont, "Om Nom Nom", new Vector2(2, 2), Color.Green);
+                    break;
+                case 3:
+                    _spriteBatch.DrawString(spriteFont, "More! MORE!", new Vector2(2, 2), Color.Green);
+                    break;
+                case 4:
+                    _spriteBatch.DrawString(spriteFont, "PIZZA!!!", new Vector2(2, 2), Color.Green);
+                    break;
+                case 5:
+                    _spriteBatch.DrawString(spriteFont, "I can see my house from here.", new Vector2(2, 2), Color.Green);
+                    break;
+                case 6:
+                    _spriteBatch.DrawString(spriteFont, "All Full! Time for a nap.", new Vector2(2, 2), Color.Green);
+                    break;
             }
+            if (slime.foodEaten < 6 && _timerGoing)
+            {
+                gameTimer = gameTime.TotalGameTime.TotalSeconds;
+            }
+            _spriteBatch.DrawString(spriteFont, $"{gameTimer:f}", new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 200, 2), Color.White);
+            _spriteBatch.End();
         }
     }
 }

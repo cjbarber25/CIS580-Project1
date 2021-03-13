@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CIS580_Project.Screens
 {
@@ -7,82 +8,89 @@ namespace CIS580_Project.Screens
     // in various hopefully useful ways.
     public class OptionsMenuScreen : MenuScreen
     {
-        private enum Ungulate
-        {
-            BactrianCamel,
-            Dromedary,
-            Llama,
-        }
-
-        private readonly MenuEntry _ungulateMenuEntry;
-        private readonly MenuEntry _languageMenuEntry;
-        private readonly MenuEntry _frobnicateMenuEntry;
-        private readonly MenuEntry _elfMenuEntry;
-
-        private static Ungulate _currentUngulate = Ungulate.Dromedary;
-        private static readonly string[] Languages = { "C#", "French", "Deoxyribonucleic acid" };
-        private static int _currentLanguage;
-        private static bool _frobnicate = true;
-        private static int _elf = 23;
-
+        private readonly MenuEntry _musicVolumeUp;
+        private readonly MenuEntry _musicVolumeDown;
+        private readonly MenuEntry _effectsVolumeUp;
+        private readonly MenuEntry _effectsVolumeDown;
+        private readonly MenuEntry _currentMusicVolume;
+        private readonly MenuEntry _currentEffectsVolume;
         public OptionsMenuScreen() : base("Options")
         {
-            _ungulateMenuEntry = new MenuEntry(string.Empty);
-            _languageMenuEntry = new MenuEntry(string.Empty);
-            _frobnicateMenuEntry = new MenuEntry(string.Empty);
-            _elfMenuEntry = new MenuEntry(string.Empty);
+            _musicVolumeUp = new MenuEntry(string.Empty);
+            _musicVolumeDown = new MenuEntry(string.Empty);
+            _effectsVolumeUp = new MenuEntry(string.Empty);
+            _effectsVolumeDown = new MenuEntry(string.Empty);
+            _currentMusicVolume = new MenuEntry(string.Empty);
+            _currentEffectsVolume = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
             var back = new MenuEntry("Back");
 
-            _ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
-            _languageMenuEntry.Selected += LanguageMenuEntrySelected;
-            _frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
-            _elfMenuEntry.Selected += ElfMenuEntrySelected;
+            _musicVolumeUp.Selected += MusicVolumeUpEntrySelected;
+            _musicVolumeDown.Selected += MusicVolumeDownEntrySelected;
+            _effectsVolumeUp.Selected += EffectsVolumeUpEntrySelected;
+            _effectsVolumeDown.Selected += EffectsVolumeDownEntrySelected;
+
             back.Selected += OnCancel;
 
-            MenuEntries.Add(_ungulateMenuEntry);
-            MenuEntries.Add(_languageMenuEntry);
-            MenuEntries.Add(_frobnicateMenuEntry);
-            MenuEntries.Add(_elfMenuEntry);
+            MenuEntries.Add(_currentMusicVolume);
+            MenuEntries.Add(_musicVolumeUp);
+            MenuEntries.Add(_musicVolumeDown);
+
+            MenuEntries.Add(_currentEffectsVolume);
+            MenuEntries.Add(_effectsVolumeUp);
+            MenuEntries.Add(_effectsVolumeDown);
+
             MenuEntries.Add(back);
         }
 
         // Fills in the latest values for the options screen menu text.
         private void SetMenuEntryText()
         {
-            _ungulateMenuEntry.Text = $"Preferred ungulate: {_currentUngulate}";
-            _languageMenuEntry.Text = $"Language: {Languages[_currentLanguage]}";
-            _frobnicateMenuEntry.Text = $"Frobnicate: {(_frobnicate ? "on" : "off")}";
-            _elfMenuEntry.Text = $"elf: {_elf.ToString()}";
+            _currentMusicVolume.Text = $"Current Music Volume: " + MediaPlayer.Volume.ToString("f");
+            _musicVolumeUp.Text = $"Music Volume Up";
+            _musicVolumeDown.Text = $"Music Volume Down";
+            _currentEffectsVolume.Text = $"Current Effects Volume: " + SoundEffect.MasterVolume.ToString("f");
+            _effectsVolumeUp.Text = $"Effects Volume Up";
+            _effectsVolumeDown.Text = $"Effects Volume Down";
         }
 
-        private void UngulateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void MusicVolumeUpEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            _currentUngulate++;
-
-            if (_currentUngulate > Ungulate.Llama)
-                _currentUngulate = 0;
-
+            MediaPlayer.Volume += 0.1f;
             SetMenuEntryText();
         }
 
-        private void LanguageMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void MusicVolumeDownEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            _currentLanguage = (_currentLanguage + 1) % Languages.Length;
+            MediaPlayer.Volume -= 0.1f;
             SetMenuEntryText();
         }
 
-        private void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void EffectsVolumeUpEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            _frobnicate = !_frobnicate;
+            if (SoundEffect.MasterVolume <= 0.9f)
+            {
+                SoundEffect.MasterVolume += 0.1f;
+            }
+            else
+            {
+                SoundEffect.MasterVolume = 1;
+            }
             SetMenuEntryText();
         }
 
-        private void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        private void EffectsVolumeDownEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            _elf++;
+            if (SoundEffect.MasterVolume >= 0.1f)
+            {
+                SoundEffect.MasterVolume -= 0.1f;
+            }
+            else
+            {
+                SoundEffect.MasterVolume = 0;
+            }
             SetMenuEntryText();
         }
     }
